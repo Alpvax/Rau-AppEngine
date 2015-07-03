@@ -26,6 +26,68 @@
   "ownerDomain" : "rau.alpvax",
   "ownerName" : "rau.alpvax",
   "methods" : {
+    "deviceinfoendpoint.listDeviceInfo" : {
+      "path" : "deviceinfo",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "alpvax.rau.DeviceInfoEndpoint.listDeviceInfo",
+      "request" : {
+        "parameters" : {
+          "cursor" : {
+            "type" : "string",
+            "required" : false
+          },
+          "limit" : {
+            "type" : "int32",
+            "required" : false
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "deviceinfoendpoint.updateDeviceInfo" : {
+      "path" : "deviceinfo",
+      "httpMethod" : "PUT",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "alpvax.rau.DeviceInfoEndpoint.updateDeviceInfo",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "deviceinfoendpoint.removeDeviceInfo" : {
+      "path" : "deviceinfo/{id}",
+      "httpMethod" : "DELETE",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "alpvax.rau.DeviceInfoEndpoint.removeDeviceInfo",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
     "deviceinfoendpoint.getDeviceInfo" : {
       "path" : "deviceinfo/{id}",
       "httpMethod" : "GET",
@@ -62,72 +124,25 @@
       "response" : {
         "body" : "autoTemplate(backendResponse)"
       }
-    },
-    "deviceinfoendpoint.updateDeviceInfo" : {
-      "path" : "deviceinfo",
-      "httpMethod" : "PUT",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "alpvax.rau.DeviceInfoEndpoint.updateDeviceInfo",
-      "request" : {
-        "body" : "autoTemplate(backendRequest)",
-        "bodyName" : "resource"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
-    "deviceinfoendpoint.listDeviceInfo" : {
-      "path" : "deviceinfo",
-      "httpMethod" : "GET",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "alpvax.rau.DeviceInfoEndpoint.listDeviceInfo",
-      "request" : {
-        "parameters" : {
-          "cursor" : {
-            "type" : "string",
-            "required" : false
-          },
-          "limit" : {
-            "type" : "int32",
-            "required" : false
-          }
-        },
-        "body" : "empty"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
-    "deviceinfoendpoint.removeDeviceInfo" : {
-      "path" : "deviceinfo/{id}",
-      "httpMethod" : "DELETE",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "alpvax.rau.DeviceInfoEndpoint.removeDeviceInfo",
-      "request" : {
-        "parameters" : {
-          "id" : {
-            "type" : "string",
-            "required" : true
-          }
-        },
-        "body" : "empty"
-      },
-      "response" : {
-        "body" : "empty"
-      }
     }
   },
   "descriptor" : {
     "schemas" : {
+      "CollectionResponse_DeviceInfo" : {
+        "id" : "CollectionResponse_DeviceInfo",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "DeviceInfo"
+            }
+          },
+          "nextPageToken" : {
+            "type" : "string"
+          }
+        }
+      },
       "DeviceInfo" : {
         "id" : "DeviceInfo",
         "type" : "object",
@@ -143,24 +158,24 @@
             "format" : "int64"
           }
         }
-      },
-      "CollectionResponse_DeviceInfo" : {
-        "id" : "CollectionResponse_DeviceInfo",
-        "type" : "object",
-        "properties" : {
-          "items" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "DeviceInfo"
-            }
-          },
-          "nextPageToken" : {
-            "type" : "string"
-          }
-        }
       }
     },
     "methods" : {
+      "alpvax.rau.DeviceInfoEndpoint.listDeviceInfo" : {
+        "response" : {
+          "$ref" : "CollectionResponse_DeviceInfo"
+        }
+      },
+      "alpvax.rau.DeviceInfoEndpoint.updateDeviceInfo" : {
+        "request" : {
+          "$ref" : "DeviceInfo"
+        },
+        "response" : {
+          "$ref" : "DeviceInfo"
+        }
+      },
+      "alpvax.rau.DeviceInfoEndpoint.removeDeviceInfo" : {
+      },
       "alpvax.rau.DeviceInfoEndpoint.getDeviceInfo" : {
         "response" : {
           "$ref" : "DeviceInfo"
@@ -173,21 +188,6 @@
         "response" : {
           "$ref" : "DeviceInfo"
         }
-      },
-      "alpvax.rau.DeviceInfoEndpoint.updateDeviceInfo" : {
-        "request" : {
-          "$ref" : "DeviceInfo"
-        },
-        "response" : {
-          "$ref" : "DeviceInfo"
-        }
-      },
-      "alpvax.rau.DeviceInfoEndpoint.listDeviceInfo" : {
-        "response" : {
-          "$ref" : "CollectionResponse_DeviceInfo"
-        }
-      },
-      "alpvax.rau.DeviceInfoEndpoint.removeDeviceInfo" : {
       }
     }
   }
